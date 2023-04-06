@@ -141,7 +141,7 @@ def main():
     prb_id_ancestors = set()
     for id in prb_ids:
         prb_id_ancestors.add(id)
-        if id not in pabG.nodes:
+        if id not in pabG.nodes():
             # WARN
             continue
         prb_id_ancestors.update(nx.ancestors(pabG, id))
@@ -207,7 +207,7 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
     gene_id_ancestors = set()
     for id in gene_ids:
         gene_id_ancestors.add(id)
-        if id not in pabG.nodes:
+        if id not in pabG.nodes():
             # WARN
             continue
         gene_id_ancestors.update(nx.ancestors(pabG, id))
@@ -219,7 +219,7 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
     prb_gene_ids = prb_id_ancestors.union(gene_id_ancestors)
     prb_gene_ids.add('HP:0000118')
     pgG = pabG.subgraph(prb_gene_ids)
-    pgG_ids = set(pgG.nodes)
+    pgG_ids = set(pgG.nodes())
     pgUG = nx.Graph(pgG)
         
     lcas = []
