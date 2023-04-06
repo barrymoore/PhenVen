@@ -14,11 +14,11 @@ description_text = (
     """
     Synopsis:
     
-    phenven.py --terms patient_phenotype.tsv      \
-               --gene_file candidate_genes.tsv    \
-               --phen2gene phenotype_to_genes.txt \
-               --json hp.json                     \
-               --jobs 4                           \
+    phenven.py --terms patient_phenotype.tsv         \
+               --gene_file candidate_genes.tsv       \
+               --phen2gene phenotype_to_genes.txt.gz \
+               --json hp.json.gz                     \
+               --jobs 4                              \
                > phenotype_overlap.tsv
     
     Description:
@@ -49,19 +49,18 @@ def main():
                         help='A comma-separated list of candidate genes.')
     parser.add_argument('--gene_file', '-f',
                         help='A file of candidate genes - one per row first column.')
-    parser.add_argument('--proband_terms', '-t', dest='proband_terms_file',
+    parser.add_argument('--terms', '-t', dest='proband_terms_file',
                         help='A file containing the list of HPO IDs (first column) associated with the proband.')
     parser.add_argument('--phen2gene', '-p', dest='phen2gene_file',
-                        help='The phenotype_to_genes.txt file from HPO')
+                        help='The gzipped phenotype_to_genes.txt.gz file from HPO')
     parser.add_argument('--json', '-j', dest='json_file',
-                        help='The hp.json file from HPO')
+                        help='A gzipped hp.json.gz file from HPO')
     parser.add_argument('--jobs', '-n', type=int, default=1,
                         help='The number of jobs to run in parallel')
     args = parser.parse_args()
 
-    sys.stderr.write('INFO : loading_data_file : ' + args.proband_terms_file)
-
     # Parse Text Files to Datafames
+    sys.stderr.write('INFO : loading_data_file : ' + args.gene_file + '\n')
     df_cnd = object()
     if args.genes is not None:
         gene_list = args.genes.split(',')
@@ -69,6 +68,7 @@ def main():
     if args.gene_file is not None:
         df_cnd = pd.read_table(args.gene_file, names=['gene'])
 
+    sys.stderr.write('INFO : loading_data_file : ' + args.proband_terms_file + '\n')
     df_prb = pd.read_table(args.proband_terms_file)
     df_prb.drop_duplicates(subset='id', inplace=True)
     df_prb.set_index('id', inplace=True)
@@ -76,6 +76,7 @@ def main():
     
     # Parse HPO Phenotype_to_Gene File to Dataframe
     # 'id' 'term' 'entrez-gene-id' 'entrez-gene-symbol' 'Additional Info from G-D source' 'G-D source' 'disease-ID for link'
+    sys.stderr.write('INFO : loading_data_file : ' + args.phen2gene_file + '\n')
     df_p2g = pd.read_table(args.phen2gene_file,
                            skiprows=1,
                            header=None,
@@ -94,10 +95,12 @@ def main():
     df_p2g = df_p2g.join(term_counts)
     
     # Parse HPO JSON
+    sys.stderr.write('INFO : loading_data_file : ' + args.json_file + '\n')
     with open(args.json_file) as json_fh:
         data = json.load(json_fh)
         
     # Parse Nodes from HPO JSON Data
+    sys.stderr.write('INFO : processing_hpo_graph\n')
     nodes = list()
     for node in data['graphs'][0]['nodes']:
         hp_id = node['id']
@@ -131,7 +134,6 @@ def main():
     G.add_edges_from(edges)
     
     # Trim HPO to subgraph of 'Phenotypic abnormality'
-    
     root = 'HP:0000118' # Phenotypic abnormality
     sub_ids = nx.descendants(G, 'HP:0000118')
     sub_ids.add('HP:0000118')
@@ -149,21 +151,23 @@ def main():
         prbG = pabG.subgraph(prb_id_ancestors)
         prb_leaves = {node for node in prbG.nodes() if prbG.out_degree(node)==0}
 
-    #--------------------------------------------------------------------------------
 
+
+    sys.stderr.write('INFO : identify_lcas_and_shpl \n')
     all_df_lcas = []
     all_gene_lcas = []
-            
     # Check for gene_ids in genG_ids
     all_df_lcas = Parallel(n_jobs=args.jobs)(delayed(get_all_lcas)(prb_id_ancestors, prb_leaves, gene, df_p2g, pabG)
                                              for gene in tqdm(df_cnd['gene'].tolist()))
 
+    sys.stderr.write('INFO : processing_term_pairs \n')
     df_lcas = pd.concat(all_df_lcas)
     df_lcas.set_index('lca_id', inplace=True)
     df_lcas = df_lcas.join(term_counts, how='left')
     df_lcas.sort_values(by='ic', ascending=False, inplace=True)
     df_lcas.drop_duplicates(subset=['prb_id', 'gene'], keep='first', inplace=True)
 
+    sys.stderr.write('INFO : merging_gene_data \n')
     df_lcas = df_lcas.merge(df_p2g['term'], left_on='prb_id', right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'prb_term'}, inplace=True)
 
@@ -176,13 +180,16 @@ def main():
     df_lcas = df_lcas.merge(df_p2g['term'], left_index=True, right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'lca_term'}, inplace=True)
 
+    sys.stderr.write('INFO : sorting_data \n')
     df_lcas.sort_values(by='ic', ascending=False, inplace=True)
     df_lcas.reset_index(inplace=True, drop=False)
     df_lcas.rename(columns={'index': 'lca_id'}, inplace=True)
 
+    sys.stderr.write('INFO : print_data \n')
     # Fix ordering here
-    #df_all_lcas = pd.DataFrame(all_lcas)
-    df_lcas = df_lcas.loc[:,['gene', 'ic', 'shpl', 'prb_term', 'gene_term', 'lca_term', 'anc_term', 'prb_id', 'gene_id', 'lca_id', 'anc_id', 'count', 'freq']]
+    df_lcas = df_lcas.loc[:,['gene', 'ic', 'shpl', 'prb_term', 'gene_term',
+                             'lca_term', 'anc_term', 'prb_id', 'gene_id',
+                             'lca_id', 'anc_id', 'count', 'freq']]
     print(df_lcas.to_csv(sep='\t', index=False))
 
 def get_lcas(prb_id, genes, pgG, pgUG):
