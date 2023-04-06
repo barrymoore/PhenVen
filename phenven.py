@@ -72,7 +72,7 @@ def main():
     df_prb = pd.read_table(args.proband_terms_file)
     df_prb.drop_duplicates(subset='id', inplace=True)
     df_prb.set_index('id', inplace=True)
-    prb_ids = set(df_prb.index.to_list())
+    prb_ids = set(df_prb.index.tolist())
     
     # Parse HPO Phenotype_to_Gene File to Dataframe
     # 'id' 'term' 'entrez-gene-id' 'entrez-gene-symbol' 'Additional Info from G-D source' 'G-D source' 'disease-ID for link'
@@ -158,7 +158,7 @@ def main():
     all_gene_lcas = []
     # Check for gene_ids in genG_ids
     all_df_lcas = Parallel(n_jobs=args.jobs)(delayed(get_all_lcas)(prb_id_ancestors, prb_leaves, gene, df_p2g, pabG)
-                                             for gene in tqdm(df_cnd['gene'].to_list()))
+                                             for gene in tqdm(df_cnd['gene'].tolist()))
 
     sys.stderr.write('INFO : processing_term_pairs \n')
     df_lcas = pd.concat(all_df_lcas)
@@ -210,7 +210,7 @@ def get_lcas(prb_id, genes, pgG, pgUG):
 def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
     # Get subgraph/leaves of gene HPO ancestors
     # gene = df_cnd.iloc[0]['gene']
-    gene_ids = set(df_p2g.query('gene == @gene').index.to_list())
+    gene_ids = set(df_p2g.query('gene == @gene').index.tolist())
     gene_id_ancestors = set()
     for id in gene_ids:
         gene_id_ancestors.add(id)
