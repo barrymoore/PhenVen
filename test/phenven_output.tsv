@@ -1,0 +1,96 @@
+gene	ic	shpl	prb_term	gene_term	lca_term	anc_term	prb_id	gene_id	lca_id	anc_id	count	freq
+CFTR	5.884166966151015	0	White papule	White papule	White papule	Abnormality of the integument	HP:0031289	HP:0031289	HP:0031289	HP:0001574	1	1.3056688223258924e-06
+CFTR	5.185196961814996	0	Palmar pruritus	Palmar pruritus	Palmar pruritus	Abnormality of the integument	HP:0031248	HP:0031248	HP:0031248	HP:0001574	5	6.528344111629462e-06
+CFTR	4.92992445671169	0	Pancreatic calcification	Pancreatic calcification	Pancreatic calcification	Abnormality of the digestive system	HP:0005213	HP:0005213	HP:0005213	HP:0025031	9	1.175101940093303e-05
+CFTR	4.522439130133423	0	Crackles	Crackles	Crackles	Abnormality of the respiratory system	HP:0030830	HP:0030830	HP:0030830	HP:0002086	23	3.0030382913495523e-05
+CFTR	4.486226957478977	0	Recurrent Aspergillus infections	Recurrent Aspergillus infections	Recurrent Aspergillus infections	Abnormality of the immune system	HP:0002724	HP:0002724	HP:0002724	HP:0002715	25	3.264172055814731e-05
+CFTR	4.486226957478977	0	Recurrent pancreatitis	Recurrent pancreatitis	Recurrent pancreatitis	Abnormality of the immune system	HP:0100027	HP:0100027	HP:0100027	HP:0002715	25	3.264172055814731e-05
+CFTR	4.421768968252059	0	Atopic dermatitis	Atopic dermatitis	Atopic dermatitis	Abnormality of the integument	HP:0001047	HP:0001047	HP:0001047	HP:0001574	29	3.7864395847450876e-05
+CFTR	4.135978939144815	0	Steatorrhea	Steatorrhea	Steatorrhea	Abnormality of the digestive system	HP:0002570	HP:0002570	HP:0002570	HP:0025031	56	7.311745405024997e-05
+CFTR	4.135978939144815	0	Rectal prolapse	Rectal prolapse	Rectal prolapse	Abnormality of the digestive system	HP:0002035	HP:0002035	HP:0002035	HP:0025031	56	7.311745405024997e-05
+DNAH1	4.098837131140248	0	Wheezing	Wheezing	Wheezing	Abnormality of the respiratory system	HP:0030828	HP:0030828	HP:0030828	HP:0002086	61	7.964579816187943e-05
+CFTR	4.098837131140248	0	Wheezing	Wheezing	Wheezing	Abnormality of the respiratory system	HP:0030828	HP:0030828	HP:0030828	HP:0002086	61	7.964579816187943e-05
+CD79B	4.0848264166974335	0	Chronic sinusitis	Chronic sinusitis	Chronic sinusitis	Abnormality of head or neck	HP:0011109	HP:0011109	HP:0011109	HP:0000152	63	8.225713580653122e-05
+CFTR	4.0848264166974335	0	Chronic sinusitis	Chronic sinusitis	Chronic sinusitis	Abnormality of head or neck	HP:0011109	HP:0011109	HP:0011109	HP:0000152	63	8.225713580653122e-05
+DNAH1	4.0848264166974335	0	Chronic sinusitis	Chronic sinusitis	Chronic sinusitis	Abnormality of head or neck	HP:0011109	HP:0011109	HP:0011109	HP:0000152	63	8.225713580653122e-05
+GNAS	3.906443360862167	1	White papule	Papule	Papule	Abnormality of the integument	HP:0031289	HP:0200034	HP:0200034	HP:0001574	95	0.00012403853812095977
+GNAS	3.906443360862167	1	Recurrent pancreatitis	Pancreatitis	Pancreatitis	Abnormality of the immune system	HP:0100027	HP:0001733	HP:0001733	HP:0002715	95	0.00012403853812095977
+HBB	3.8467404682103914	0	Chest pain	Chest pain	Chest pain	Constitutional symptom	HP:0100749	HP:0100749	HP:0100749	HP:0025142	109	0.00014231790163352225
+CFTR	3.8467404682103914	0	Chest pain	Chest pain	Chest pain	Constitutional symptom	HP:0100749	HP:0100749	HP:0100749	HP:0025142	109	0.00014231790163352225
+GNAS	3.8467404682103914	0	Chest pain	Chest pain	Chest pain	Constitutional symptom	HP:0100749	HP:0100749	HP:0100749	HP:0025142	109	0.00014231790163352225
+DNAH1	3.7702236138441783	2	Crackles	Wheezing	Abnormal breath sound	Abnormality of the respiratory system	HP:0030830	HP:0030828	HP:0030829	HP:0002086	130	0.000169736946902366
+CFTR	3.7168496314028387	0	Leukocytosis	Leukocytosis	Leukocytosis	Abnormality of blood and blood-forming tissues	HP:0001974	HP:0001974	HP:0001974	HP:0001871	147	0.00019193331688190617
+HBB	3.7168496314028387	0	Leukocytosis	Leukocytosis	Leukocytosis	Abnormality of blood and blood-forming tissues	HP:0001974	HP:0001974	HP:0001974	HP:0001871	147	0.00019193331688190617
+CFTR	3.6693231181033172	0	Bronchiectasis	Bronchiectasis	Bronchiectasis	Abnormality of the respiratory system	HP:0002110	HP:0002110	HP:0002110	HP:0002086	164	0.00021412968686144635
+DNAH1	3.6693231181033172	0	Bronchiectasis	Bronchiectasis	Bronchiectasis	Abnormality of the respiratory system	HP:0002110	HP:0002110	HP:0002110	HP:0002086	164	0.00021412968686144635
+CD79B	3.6693231181033172	0	Bronchiectasis	Bronchiectasis	Bronchiectasis	Abnormality of the respiratory system	HP:0002110	HP:0002110	HP:0002110	HP:0002086	164	0.00021412968686144635
+CFTR	3.6693231181033172	0	Cirrhosis	Cirrhosis	Cirrhosis	Abnormality of the digestive system	HP:0001394	HP:0001394	HP:0001394	HP:0025031	164	0.00021412968686144635
+HBB	3.6693231181033172	0	Cirrhosis	Cirrhosis	Cirrhosis	Abnormality of the digestive system	HP:0001394	HP:0001394	HP:0001394	HP:0025031	164	0.00021412968686144635
+CD79B	3.522439130133422	2	Steatorrhea	Malabsorption	Malabsorption	Abnormality of the digestive system	HP:0002570	HP:0002024	HP:0002024	HP:0025031	230	0.0003003038291349552
+GNAS	3.5112549631809085	3	Pancreatic calcification	Choroid plexus calcification	Ectopic calcification	Abnormality of the digestive system	HP:0005213	HP:0006960	HP:0010766	HP:0025031	236	0.0003081378420689106
+HBB	3.3604204993394506	0	Abdominal pain	Abdominal pain	Abdominal pain	Abnormality of the digestive system	HP:0002027	HP:0002027	HP:0002027	HP:0025031	334	0.00043609338665684806
+CFTR	3.3604204993394506	0	Abdominal pain	Abdominal pain	Abdominal pain	Abnormality of the digestive system	HP:0002027	HP:0002027	HP:0002027	HP:0025031	334	0.00043609338665684806
+HBB	3.3021036032393063	0	Diarrhea	Diarrhea	Diarrhea	Abnormality of the digestive system	HP:0002014	HP:0002014	HP:0002014	HP:0025031	382	0.0004987654901284908
+CFTR	3.3021036032393063	0	Diarrhea	Diarrhea	Diarrhea	Abnormality of the digestive system	HP:0002014	HP:0002014	HP:0002014	HP:0025031	382	0.0004987654901284908
+CD79B	3.3021036032393063	0	Diarrhea	Diarrhea	Diarrhea	Abnormality of the digestive system	HP:0002014	HP:0002014	HP:0002014	HP:0025031	382	0.0004987654901284908
+HBB	3.267166625030116	0	Dyspnea	Dyspnea	Dyspnea	Abnormality of the respiratory system	HP:0002094	HP:0002094	HP:0002094	HP:0002086	414	0.0005405468924429194
+CFTR	3.267166625030116	0	Dyspnea	Dyspnea	Dyspnea	Abnormality of the respiratory system	HP:0002094	HP:0002094	HP:0002094	HP:0002086	414	0.0005405468924429194
+GNAS	3.267166625030116	0	Dyspnea	Dyspnea	Dyspnea	Abnormality of the respiratory system	HP:0002094	HP:0002094	HP:0002094	HP:0002086	414	0.0005405468924429194
+GNAS	3.2290285313396327	3	Atopic dermatitis	Acne	Inflammatory abnormality of the skin	Abnormality of the integument	HP:0001047	HP:0001061	HP:0011123	HP:0001574	452	0.0005901623076913033
+CD79B	3.2290285313396327	3	Atopic dermatitis	Recurrent skin infections	Inflammatory abnormality of the skin	Abnormality of the integument	HP:0001047	HP:0001581	HP:0011123	HP:0001574	452	0.0005901623076913033
+GNAS	3.215781049461015	1	Diabetes mellitus	Glucose intolerance	Glucose intolerance	Abnormality of the endocrine system	HP:0000819	HP:0001952	HP:0001952	HP:0000818	466	0.0006084416712038659
+HBB	3.215781049461015	0	Diabetes mellitus	Diabetes mellitus	Glucose intolerance	Abnormality of the endocrine system	HP:0000819	HP:0000819	HP:0001952	HP:0000818	466	0.0006084416712038659
+CFTR	3.215781049461015	0	Diabetes mellitus	Diabetes mellitus	Glucose intolerance	Abnormality of the endocrine system	HP:0000819	HP:0000819	HP:0001952	HP:0000818	466	0.0006084416712038659
+CD79B	3.1681636225162157	5	Palmar pruritus	Recurrent skin infections	Abnormality of skin physiology	Abnormality of the integument	HP:0031248	HP:0001581	HP:0011122	HP:0001574	520	0.000678947787609464
+GNAS	3.1681636225162157	5	Palmar pruritus	Acne	Abnormality of skin physiology	Abnormality of the integument	HP:0031248	HP:0001061	HP:0011122	HP:0001574	520	0.000678947787609464
+CD79B	3.098837131140248	4	Leukocytosis	B lymphocytopenia	Abnormal leukocyte morphology	Abnormality of blood and blood-forming tissues	HP:0001974	HP:0010976	HP:0001881	HP:0001871	610	0.0007964579816187944
+GNAS	2.9926295084784504	2	Abdominal pain	Chest pain	Pain	Abnormality of the digestive system	HP:0002027	HP:0100749	HP:0012531	HP:0025031	779	0.00101711601259187
+CD79B	2.9666614565984686	4	Rectal prolapse	Malabsorption	Abnormal intestine morphology	Abnormality of the digestive system	HP:0002035	HP:0002024	HP:0002242	HP:0025031	827	0.001079788116063513
+DNAH1	2.9666614565984686	4	Rectal prolapse	Intestinal malrotation	Abnormal intestine morphology	Abnormality of the digestive system	HP:0002035	HP:0002566	HP:0002242	HP:0025031	827	0.001079788116063513
+DNAH1	2.9666614565984686	4	Steatorrhea	Intestinal malrotation	Abnormal intestine morphology	Abnormality of the digestive system	HP:0002570	HP:0002566	HP:0002242	HP:0025031	827	0.001079788116063513
+GNAS	2.9552592759070624	4	Cirrhosis	Hepatic steatosis	Abnormal liver morphology	Abnormality of the digestive system	HP:0001394	HP:0001397	HP:0410042	HP:0025031	849	0.0011085128301546825
+CD79B	2.9552592759070624	2	Cirrhosis	Hepatitis	Abnormal liver morphology	Abnormality of the digestive system	HP:0001394	HP:0012115	HP:0410042	HP:0025031	849	0.0011085128301546825
+HBB	2.9256030829290474	3	White papule	Skin ulcer	Localized skin lesion	Abnormality of the integument	HP:0031289	HP:0200042	HP:0011355	HP:0001574	909	0.0011868529594942362
+HBB	2.9105773427237582	3	Recurrent Aspergillus infections	Recurrent bacterial infections	Recurrent infections	Abnormality of the immune system	HP:0002724	HP:0002718	HP:0002719	HP:0002715	941	0.0012286343618086648
+DNAH1	2.9105773427237582	4	Recurrent Aspergillus infections	Recurrent mycobacterial infections	Recurrent infections	Abnormality of the immune system	HP:0002724	HP:0011274	HP:0002719	HP:0002715	941	0.0012286343618086648
+CD79B	2.9105773427237582	3	Recurrent Aspergillus infections	Recurrent otitis media	Recurrent infections	Abnormality of the immune system	HP:0002724	HP:0000403	HP:0002719	HP:0002715	941	0.0012286343618086648
+GNAS	2.851548205300295	1	Abnormal renal morphology	Nephrolithiasis	Abnormal renal morphology	Abnormality of the genitourinary system	HP:0012210	HP:0000787	HP:0012210	HP:0000119	1078	0.001407510990467312
+CFTR	2.851548205300295	1	Abnormal renal morphology	Nephrolithiasis	Abnormal renal morphology	Abnormality of the genitourinary system	HP:0012210	HP:0000787	HP:0012210	HP:0000119	1078	0.001407510990467312
+CD79B	2.823091642521223	3	Abdominal pain	Fatigue	Constitutional symptom	Abnormality of the digestive system	HP:0002027	HP:0012378	HP:0025142	HP:0025031	1151	0.001502824814497102
+CD79B	2.823091642521223	3	Chest pain	Fatigue	Constitutional symptom	Constitutional symptom	HP:0100749	HP:0012378	HP:0025142	HP:0025142	1151	0.001502824814497102
+HBB	2.81746841572802	4	Recurrent pancreatitis	Chronic hepatitis	Increased inflammatory response	Abnormality of the immune system	HP:0100027	HP:0200123	HP:0012649	HP:0002715	1166	0.0015224098468319906
+CD79B	2.81746841572802	3	Recurrent pancreatitis	Osteomyelitis	Increased inflammatory response	Abnormality of the immune system	HP:0100027	HP:0002754	HP:0012649	HP:0002715	1166	0.0015224098468319906
+HBB	2.7776361123286337	6	Chronic sinusitis	Hyperplasia of the maxilla	Abnormal facial skeleton morphology	Abnormality of head or neck	HP:0011109	HP:0430028	HP:0011821	HP:0000152	1278	0.0016686447549324904
+GNAS	2.7776361123286337	4	Chronic sinusitis	Craniofacial hyperostosis	Abnormal facial skeleton morphology	Abnormality of head or neck	HP:0011109	HP:0004493	HP:0011821	HP:0000152	1278	0.0016686447549324904
+CD79B	2.768556454476715	6	Pancreatic calcification	Hepatitis	Abnormality of the abdominal organs	Abnormality of the digestive system	HP:0005213	HP:0012115	HP:0002012	HP:0025031	1305	0.0017038978131352896
+HBB	2.768556454476715	9	Pancreatic calcification	Pigment gallstones	Abnormality of the abdominal organs	Abnormality of the digestive system	HP:0005213	HP:0011981	HP:0002012	HP:0025031	1305	0.0017038978131352896
+DNAH1	2.751587118491278	4	Diabetes mellitus	Hypothyroidism	Abnormality of the endocrine system	Abnormality of the endocrine system	HP:0000819	HP:0000821	HP:0000818	HP:0000818	1357	0.001771792591896236
+HBB	2.749989858574249	4	Abnormal renal morphology	Proximal tubulopathy	Abnormality of the kidney	Abnormality of the genitourinary system	HP:0012210	HP:0000114	HP:0000077	HP:0000119	1362	0.0017783209360078653
+HBB	2.7464964289142597	5	Bronchiectasis	Pulmonary infiltrates	Abnormal respiratory system morphology	Abnormality of the respiratory system	HP:0002110	HP:0002113	HP:0012252	HP:0002086	1373	0.0017926832930534502
+DNAH1	2.7377288308652403	3	Dyspnea	Airway obstruction	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0002094	HP:0006536	HP:0002795	HP:0002086	1401	0.001829242020078575
+HBB	2.7377288308652403	5	Crackles	Hypoxemia	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030830	HP:0012418	HP:0002795	HP:0002086	1401	0.001829242020078575
+CD79B	2.7377288308652403	3	Crackles	Cough	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030830	HP:0012735	HP:0002795	HP:0002086	1401	0.001829242020078575
+CD79B	2.7377288308652403	3	Wheezing	Cough	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030828	HP:0012735	HP:0002795	HP:0002086	1401	0.001829242020078575
+CD79B	2.7377288308652403	3	Dyspnea	Cough	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0002094	HP:0012735	HP:0002795	HP:0002086	1401	0.001829242020078575
+GNAS	2.7377288308652403	4	Crackles	Dyspnea	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030830	HP:0002094	HP:0002795	HP:0002086	1401	0.001829242020078575
+HBB	2.7377288308652403	4	Wheezing	Dyspnea	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030828	HP:0002094	HP:0002795	HP:0002086	1401	0.001829242020078575
+GNAS	2.7377288308652403	4	Wheezing	Dyspnea	Abnormal respiratory system physiology	Abnormality of the respiratory system	HP:0030828	HP:0002094	HP:0002795	HP:0002086	1401	0.001829242020078575
+GNAS	2.736490641909916	6	Leukocytosis	Bone marrow hypocellularity	Abnormality of blood and blood-forming tissues	Abnormality of blood and blood-forming tissues	HP:0001974	HP:0005528	HP:0001871	HP:0001871	1405	0.0018344646953678788
+CD79B	2.677880921738583	5	Diabetes mellitus	Dehydration	Abnormal homeostasis	Abnormality of the endocrine system	HP:0000819	HP:0001944	HP:0012337	HP:0000818	1608	0.0020995154663000348
+GNAS	2.6693231181033172	8	Recurrent Aspergillus infections	Conjunctivitis	Abnormality of immune system physiology	Abnormality of the immune system	HP:0002724	HP:0000509	HP:0010978	HP:0002715	1640	0.0021412968686144633
+DNAH1	2.6693231181033172	4	Recurrent pancreatitis	Recurrent otitis media	Abnormality of immune system physiology	Abnormality of the immune system	HP:0100027	HP:0000403	HP:0010978	HP:0002715	1640	0.0021412968686144633
+GNAS	2.6468746285835563	8	Steatorrhea	Gastroesophageal reflux	Abnormality of the gastrointestinal tract	Abnormality of the digestive system	HP:0002570	HP:0002020	HP:0011024	HP:0025031	1727	0.002254890056156816
+GNAS	2.6468746285835563	7	Rectal prolapse	Gastroesophageal reflux	Abnormality of the gastrointestinal tract	Abnormality of the digestive system	HP:0002035	HP:0002020	HP:0011024	HP:0025031	1727	0.002254890056156816
+GNAS	2.6224284187984774	1	Diarrhea	Abdominal symptom	Abdominal symptom	Abnormality of the digestive system	HP:0002014	HP:0011458	HP:0011458	HP:0025031	1827	0.0023854569383894055
+GNAS	2.575175937150851	7	Bronchiectasis	Dyspnea	Abnormality of the respiratory system	Abnormality of the respiratory system	HP:0002110	HP:0002094	HP:0002086	HP:0002086	2037	0.0026596473910778426
+HBB	2.5621545275686146	7	Palmar pruritus	Hyperpigmentation of the skin	Abnormality of the skin	Abnormality of the integument	HP:0031248	HP:0000953	HP:0000951	HP:0001574	2099	0.002740598858062048
+CD79B	2.5621545275686146	7	White papule	Recurrent skin infections	Abnormality of the skin	Abnormality of the integument	HP:0031289	HP:0001581	HP:0000951	HP:0001574	2099	0.002740598858062048
+HBB	2.5621545275686146	7	Atopic dermatitis	Skin ulcer	Abnormality of the skin	Abnormality of the integument	HP:0001047	HP:0200042	HP:0000951	HP:0001574	2099	0.002740598858062048
+DNAH1	2.469527819414006	11	Abnormal renal morphology	Coiled sperm flagella	Abnormality of the genitourinary system	Abnormality of the genitourinary system	HP:0012210	HP:0032560	HP:0000119	HP:0000119	2598	0.003392127600402668
+DNAH1	2.4337638799956487	8	Pancreatic calcification	Intestinal malrotation	Abnormality of the digestive system	Abnormality of the digestive system	HP:0005213	HP:0002566	HP:0025031	HP:0025031	2821	0.003683291747781342
+DNAH1	2.4337638799956487	8	Cirrhosis	Intestinal malrotation	Abnormality of the digestive system	Abnormality of the digestive system	HP:0001394	HP:0002566	HP:0025031	HP:0025031	2821	0.003683291747781342
+HBB	2.4337638799956487	9	Steatorrhea	Abdominal pain	Abnormality of the digestive system	Abnormality of the digestive system	HP:0002570	HP:0002027	HP:0025031	HP:0025031	2821	0.003683291747781342
+DNAH1	2.4337638799956487	7	Abdominal pain	Intestinal malrotation	Abnormality of the digestive system	Abnormality of the digestive system	HP:0002027	HP:0002566	HP:0025031	HP:0025031	2821	0.003683291747781342
+HBB	2.4337638799956487	8	Rectal prolapse	Decreased liver function	Abnormality of the digestive system	Abnormality of the digestive system	HP:0002035	HP:0001410	HP:0025031	HP:0025031	2821	0.003683291747781342
+DNAH1	2.4337638799956487	7	Diarrhea	Intestinal malrotation	Abnormality of the digestive system	Abnormality of the digestive system	HP:0002014	HP:0002566	HP:0025031	HP:0025031	2821	0.003683291747781342
+
