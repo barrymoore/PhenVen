@@ -46,9 +46,9 @@ def main():
         description=description_text,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--genes', '-g',
-                        help='A comma-separated list of candidate genes.')
+                        help='A comma-separated list of target/candidate genes.')
     parser.add_argument('--gene_file', '-f',
-                        help='A file of candidate genes - one per row first column.')
+                        help='A file of target/candidate genes - one per row first column.')
     parser.add_argument('--terms', '-t', dest='proband_terms_file',
                         help='A file containing the list of HPO IDs (first column) associated with the proband.')
     parser.add_argument('--phen2gene', '-p', dest='phen2gene_file',
@@ -60,20 +60,14 @@ def main():
     args = parser.parse_args()
 
     # Parse Text Files to Datafames
-    sys.stderr.write('INFO : loading_data_file : ' + args.gene_file + '\n')
     df_cnd = object()
     if args.genes is not None:
         gene_list = args.genes.split(',')
         df_cnd = pd.DataFrame(gene_list, columns=['gene'])
     if args.gene_file is not None:
+        sys.stderr.write('INFO : loading_data_file : ' + args.gene_file + '\n')
         df_cnd = pd.read_table(args.gene_file, names=['gene'])
 
-    sys.stderr.write('INFO : loading_data_file : ' + args.proband_terms_file + '\n')
-    df_prb = pd.read_table(args.proband_terms_file)
-    df_prb.drop_duplicates(subset='id', inplace=True)
-    df_prb.set_index('id', inplace=True)
-    prb_ids = set(df_prb.index.tolist())
-    
     # Parse HPO Phenotype_to_Gene File to Dataframe
     # 'id' 'term' 'entrez-gene-id' 'entrez-gene-symbol' 'Additional Info from G-D source' 'G-D source' 'disease-ID for link'
     sys.stderr.write('INFO : loading_data_file : ' + args.phen2gene_file + '\n')
@@ -98,26 +92,34 @@ def main():
     sys.stderr.write('INFO : loading_data_file : ' + args.json_file + '\n')
     with open(args.json_file) as json_fh:
         data = json.load(json_fh)
-        
+
     # Parse Nodes from HPO JSON Data
-    sys.stderr.write('INFO : processing_hpo_graph\n')
+    sys.stderr.write('INFO : processing_hpo_graph_nodes\n')
+    hpo_term_map = list()
     nodes = list()
-    for node in data['graphs'][0]['nodes']:
+    for node in tqdm(data['graphs'][0]['nodes']):
         hp_id = node['id']
         hp_id = re.sub('.*\/', '', hp_id)
         hp_id = re.sub('_', ':', hp_id)
         if not re.match('^HP:', hp_id):
             continue
-        hp_lbl = node['lbl']
+        hp_lbl = '__Unknown__'
+        if 'lbl' in node.keys():
+            hp_lbl = node['lbl']
         hp_def = 'No definition'
         if 'meta' in node.keys():
             if 'definition' in node['meta'].keys():
                 hp_def = node['meta']['definition']['val']
-                nodes.append((hp_id, {'term': hp_lbl, 'definition': hp_def}))
-                
+        nodes.append((hp_id, {'term': hp_lbl, 'definition': hp_def}))
+        hpo_term_map.append([hp_id, hp_lbl])
+
+    hpo_term_map = pd.DataFrame(hpo_term_map, columns=['id', 'term'])
+    hpo_term_map.set_index('id', inplace=True)
+
     # Parse Edges from HPO JSON Data
+    sys.stderr.write('INFO : processing_hpo_graph_edges\n')
     edges = []
-    for edge in data['graphs'][0]['edges']:
+    for edge in tqdm(data['graphs'][0]['edges']):
         sub = edge['sub']
         sub = re.sub('.*\/', '', sub)
         sub = re.sub('_', ':', sub)
@@ -134,31 +136,48 @@ def main():
     G.add_edges_from(edges)
     
     # Trim HPO to subgraph of 'Phenotypic abnormality'
-    root = 'HP:0000118' # Phenotypic abnormality
-    sub_ids = nx.descendants(G, 'HP:0000118')
-    sub_ids.add('HP:0000118')
+    root_node = 'HP:0000118' # Phenotypic abnormality
+    sub_ids = nx.descendants(G, root_node)
+    sub_ids.add(root_node)
     pabG = G.subgraph(sub_ids)
 
+    # Load proband terms
+    sys.stderr.write('INFO : loading_data_file : ' + args.proband_terms_file + '\n')
+    df_prb = pd.read_table(args.proband_terms_file)
+    df_prb.drop_duplicates(subset='id', inplace=True)
+    df_prb.set_index('id', inplace=True)
+    prb_ids = set(df_prb.index.tolist())
+    
+    # Trim proband terms to only those found in current HPO
+    prb_hpo_diff = df_prb[~df_prb.index.isin(hpo_term_map.index)]
+    for missing_id in prb_hpo_diff.index.tolist():
+        missing_term = prb_hpo_diff.loc[missing_id]['term']
+        sys.stderr.write('INFO : dropping_invalid_proband_term : {0} {1}\n'.format(missing_id, missing_term))
+    df_prb = df_prb[df_prb.index.isin(hpo_term_map.index)]
+        
     # Get subgraph/leaves of proband HPO ancestors
+    sys.stderr.write('INFO : processing_proband_terms_in_graph\n')
     prb_id_ancestors = set()
-    for id in prb_ids:
+    for id in tqdm(prb_ids):
         prb_id_ancestors.add(id)
         if id not in pabG.nodes():
             # WARN
             continue
         prb_id_ancestors.update(nx.ancestors(pabG, id))
-        prb_id_ancestors.add('HP:0000118')
+        prb_id_ancestors.add(root_node)
         prbG = pabG.subgraph(prb_id_ancestors)
         prb_leaves = {node for node in prbG.nodes() if prbG.out_degree(node)==0}
 
-
-
     sys.stderr.write('INFO : identify_lcas_and_shpl \n')
+    lca_cache = dict()
     all_df_lcas = []
-    all_gene_lcas = []
     # Check for gene_ids in genG_ids
-    all_df_lcas = Parallel(n_jobs=args.jobs)(delayed(get_all_lcas)(prb_id_ancestors, prb_leaves, gene, df_p2g, pabG)
+    all_df_lcas = Parallel(n_jobs=args.jobs)(delayed(get_all_lcas)(prb_id_ancestors, prb_leaves, gene, df_p2g, pabG, root_node, lca_cache)
                                              for gene in tqdm(df_cnd['gene'].tolist()))
+    # Non-parallel loop for debugging
+    # for gene in df_cnd['gene'].tolist():
+    #     this_gene_lcas = get_all_lcas(prb_id_ancestors, prb_leaves, gene, df_p2g, pabG, root_node)
+    #     all_df_lcas.append(this_gene_lcas)
 
     sys.stderr.write('INFO : processing_term_pairs \n')
     df_lcas = pd.concat(all_df_lcas)
@@ -168,16 +187,16 @@ def main():
     df_lcas.drop_duplicates(subset=['prb_id', 'gene'], keep='first', inplace=True)
 
     sys.stderr.write('INFO : merging_gene_data \n')
-    df_lcas = df_lcas.merge(df_p2g['term'], left_on='prb_id', right_index=True).drop_duplicates()
+    df_lcas = df_lcas.merge(hpo_term_map['term'], left_on='prb_id', right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'prb_term'}, inplace=True)
 
-    df_lcas = df_lcas.merge(df_p2g['term'], left_on='gene_id', right_index=True).drop_duplicates()
+    df_lcas = df_lcas.merge(hpo_term_map['term'], left_on='gene_id', right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'gene_term'}, inplace=True)
 
-    df_lcas = df_lcas.merge(df_p2g['term'], left_on='anc_id', right_index=True).drop_duplicates()
+    df_lcas = df_lcas.merge(hpo_term_map['term'], left_on='anc_id', right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'anc_term'}, inplace=True)
 
-    df_lcas = df_lcas.merge(df_p2g['term'], left_index=True, right_index=True).drop_duplicates()
+    df_lcas = df_lcas.merge(hpo_term_map['term'], left_index=True, right_index=True).drop_duplicates()
     df_lcas.rename(columns={'term': 'lca_term'}, inplace=True)
 
     sys.stderr.write('INFO : sorting_data \n')
@@ -192,22 +211,8 @@ def main():
                              'lca_id', 'anc_id', 'count', 'freq']]
     print(df_lcas.to_csv(sep='\t', index=False))
 
-def get_lcas(prb_id, genes, pgG, pgUG):
 
-    lcas = []
-    for gene_id in genes:
-        lca = nx.lowest_common_ancestor(pgG, gene_id, prb_id)
-        paths = nx.all_simple_paths(pgG, 'HP:0000118', prb_id)
-        anc = lca
-        for path in paths:
-            if (1 < len(path)):
-                anc = path[1]
-                break
-        shpl = nx.shortest_path_length(pgUG, gene_id, prb_id)
-        lcas.append((anc, prb_id, gene_id, lca, shpl))
-    return lcas
-
-def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
+def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG, root_node, lca_cache):
     # Get subgraph/leaves of gene HPO ancestors
     # gene = df_cnd.iloc[0]['gene']
     gene_ids = set(df_p2g.query('gene == @gene').index.tolist())
@@ -218,13 +223,13 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
             # WARN
             continue
         gene_id_ancestors.update(nx.ancestors(pabG, id))
-    gene_id_ancestors.add('HP:0000118')
+    gene_id_ancestors.add(root_node)
     genG = pabG.subgraph(gene_id_ancestors)
     gen_leaves = [node for node in genG.nodes() if genG.out_degree(node)==0]
 
     # Get subgraph of proband & gene IDs
     prb_gene_ids = prb_id_ancestors.union(gene_id_ancestors)
-    prb_gene_ids.add('HP:0000118')
+    prb_gene_ids.add(root_node)
     pgG = pabG.subgraph(prb_gene_ids)
     pgG_ids = set(pgG.nodes())
     pgUG = nx.Graph(pgG)
@@ -232,8 +237,17 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
     lcas = []
     for prb_id in prb_id_leaves:
         for gene_id in gen_leaves:
-            lca = nx.lowest_common_ancestor(pgG, gene_id, prb_id)
-            paths = nx.all_simple_paths(pgG, 'HP:0000118', prb_id)
+            pair_id = '_'.join([prb_id, gene_id])
+            lca=''
+            if (pair_id in lca_cache):
+                lca = lca_cache[pair_id]
+            else:
+                lca = nx.lowest_common_ancestor(pgG, gene_id, prb_id)
+                lca_cache[pair_id] = lca
+            # Skip gene term when the LCA is Phenotypic Abnormality
+            if (lca == root_node):
+                continue
+            paths = nx.all_simple_paths(pgG, root_node, prb_id)
             anc = lca
             for path in paths:
                 if (1 < len(path)):
@@ -242,14 +256,9 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG):
             shpl = nx.shortest_path_length(pgUG, gene_id, prb_id)
             lcas.append((anc, prb_id, gene_id, lca, shpl))
     
-    # all_gene_lcas = [];
-    # for lca in lcas:
-    #     all_gene_lcas.extend(lca)
-    
     df_lcas = pd.DataFrame(lcas, columns=['anc_id', 'prb_id', 'gene_id', 'lca_id', 'shpl'])
     df_lcas['gene'] = gene
     return df_lcas
-
 
 
 if __name__ == "__main__":
