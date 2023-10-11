@@ -12,7 +12,7 @@ need to review a detailed list of phenotypes are driving that signal.
 PhenVen can also 
 prioritize candidate genes and/or diseases based on a patient's
 phenotype in a diagnostic style analysis, similar to how you might use
-[Phenomizer](https://compbio.charite.de/phenomizer/) in a phenotype first
+[Phenomizer](https://pubmed.ncbi.nlm.nih.gov/19800049/) in a phenotype first
 analysis.  PhenVen might also be run with a list of candidate genes 
 that were identified by WGS/WES gene/variant prioritization methods 
 to add a phenotype review component to that analysis - similar to how you 
