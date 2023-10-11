@@ -1,9 +1,9 @@
-# PhenVen - Patient/gene/disease phenotype overlap analysis.
+# PhenVen - Patient to HPO gene/disease phenotype overlap analysis.
 
 ### Description
 
 PhenVen is a tool to assist with a review of the phenotype overlap
-between a patient and a set of candidate genes.  PhenVen was primarily 
+between a patient and genes/diseases anotated by the [Human Phenotype Ontology](https://hpo.jax.org/app/).  PhenVen was primarily 
 designed as a tool to provide the detail needed to explore the details of phenotype 
 overlap between the phenotype terms of a patient and one or more 
 candidate genes e.g. you know/suspect that there is good phenotype overlap, but you
