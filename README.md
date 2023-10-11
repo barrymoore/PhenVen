@@ -25,16 +25,6 @@ phenven.py -terms hpo_terms_all.tsv --genes candidate_genes.txt \
            -phen2gene phenotype_to_genes.txt -json hp.json -n 4
 ```
 
-
-patient_phenotype.tsv
-
-../data/:
-README.md
-genes_to_phenotype.txt
-hp.json
-phenotype.hpoa
-phenotype_to_genes.txt
-
 ### Documentation
 
 
