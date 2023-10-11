@@ -27,19 +27,8 @@ phenven.py -terms hpo_terms.tsv --genes genes.tsv \
 
 ### Documentation
 
-usage: phenven.py [-h] [--genes GENES] [--gene_file GENE_FILE] [--terms PROBAND_TERMS_FILE] [--phen2gene PHEN2GENE_FILE] [--json JSON_FILE] [--jobs JOBS]
-
-Synopsis: phenven.py --terms patient_phenotype.tsv --gene_file candidate_genes.tsv --phen2gene phenotype_to_genes.txt.gz --json hp.json.gz --jobs 4 >
-phenotype_overlap.tsv Description: PhenVen is a tool to assist with a review of the phenotype overlap between a patient and a set of candidate genes.
-PhenVen can prioritize candidate genes and/or diseases based on a patient's phenotype in a diagnosis style analysis, similar to how you might use Phevor
-or Phenomizer (phenotype first analysis). PhenVen might also be run with a list of candidate genes that were identified by WGS/WES gene/variant
-prioritization analysis to aid phenotype review of those candidate genes. Finally, PhenVen could be used to provide detail and clarity regarding the
-extent of phenotype overlap between the phenotype terms of a patient and one or more candidate genes that have already been phenotype-prioritized by a
-tool like Phevor or Exomiser - e.g. you know/suspect that there is good phenotype overlap, but you want to review which phenotypes are driving that
-signal.
-
 ```
-optional arguments:
+ Arguments:
   -h, --help            show this help message and exit
   --genes GENES, -g GENES
                         A comma-separated list of target/candidate genes. (default: None)
