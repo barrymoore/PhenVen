@@ -3,18 +3,20 @@
 ### Description
 
 PhenVen is a tool to assist with a review of the phenotype overlap
-between a patient and a set of candidate genes.  PhenVen can
+between a patient and a set of candidate genes.  PhenVen was primarily 
+designed as a tool to provide the detail needed to explore the details of phenotype 
+overlap between the phenotype terms of a patient and one or more 
+candidate genes e.g. you know/suspect that there is good phenotype overlap, but you
+need to review a detailed list of phenotypes are driving that signal.
+
+PhenVen can
 prioritize candidate genes and/or diseases based on a patient's
 phenotype in a diagnostic style analysis, similar to how you might use
-Phevor or Phenomizer (phenotype first analysis).  PhenVen might also
-be run with a list of candidate genes that were identified by WGS/WES
-gene/variant prioritization analysis to add phenotype review of those
-candidate genes.  However, PhenVen was primarily designed as a tool
-to provide the detail needed to explore the phenotype overlap between the
-phenotype terms of a patient and one or more candidate genes that have
-already been phenotype-prioritized by a tool like Phevor or Exomiser -
-e.g. you know/suspect that there is good phenotype overlap, but you
-need to review a detailed list of phenotypes are driving that signal.
+[Phenomizer](https://compbio.charite.de/phenomizer/) (phenotype first
+analysis).  PhenVen might also be run with a list of candidate genes 
+that were identified by WGS/WES gene/variant prioritization analysis 
+to add phenotype review of those candidate genes similar to how you 
+might use [Phevor](https://pubmed.ncbi.nlm.nih.gov/24702956/).
 
 ### Synopsis
 
