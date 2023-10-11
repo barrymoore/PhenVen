@@ -38,6 +38,7 @@ extent of phenotype overlap between the phenotype terms of a patient and one or 
 tool like Phevor or Exomiser - e.g. you know/suspect that there is good phenotype overlap, but you want to review which phenotypes are driving that
 signal.
 
+```
 optional arguments:
   -h, --help            show this help message and exit
   --genes GENES, -g GENES
@@ -51,6 +52,7 @@ optional arguments:
   --json JSON_FILE, -j JSON_FILE
                         A gzipped hp.json.gz file from HPO (default: None)
   --jobs JOBS, -n JOBS  The number of jobs to run in parallel (default: 1)
+```
 
 ### Installation
 
