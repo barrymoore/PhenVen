@@ -1,4 +1,4 @@
-# PhenVen - Proband/gene/disease phenotype overlap analysis.
+# PhenVen - Patient/gene/disease phenotype overlap analysis.
 
 ### Description
 
