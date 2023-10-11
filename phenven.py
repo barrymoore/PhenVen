@@ -6,16 +6,16 @@ import json
 import argparse
 import numpy as np
 import pandas as pd
-import networkx as nx
 from tqdm import tqdm
 from joblib import Parallel, delayed
+import networkx as nx
 
 description_text = (
     """
     Synopsis:
     
     phenven.py --terms patient_phenotype.tsv         \
-               --gene_file candidate_genes.tsv       \
+               --gene_file gene_list.tsv             \
                --phen2gene phenotype_to_genes.txt.gz \
                --json hp.json.gz                     \
                --jobs 4                              \
@@ -24,19 +24,19 @@ description_text = (
     Description:
 
     PhenVen is a tool to assist with a review of the phenotype overlap
-    between a patient and a set of candidate genes.  PhenVen can
-    prioritize candidate genes and/or diseases based on a patient's
-    phenotype in a diagnosis style analysis, similar to how you might
-    use Phevor or Phenomizer (phenotype first analysis).  PhenVen
-    might also be run with a list of candidate genes that were
-    identified by WGS/WES gene/variant prioritization analysis to aid
-    phenotype review of those candidate genes.  Finally, PhenVen could
-    be used to provide detail and clarity regarding the extent of
-    phenotype overlap between the phenotype terms of a patient and one
-    or more candidate genes that have already been
-    phenotype-prioritized by a tool like Phevor or Exomiser - e.g. you
-    know/suspect that there is good phenotype overlap, but you want to
-    review which phenotypes are driving that signal.
+    between a patient and a set of genes.  PhenVen can prioritize
+    candidate genes and/or diseases based on a patient's phenotype in
+    a diagnosis style analysis, similar to how you might use Phevor or
+    Phenomizer (phenotype first analysis).  PhenVen might also be run
+    with a list of candidate genes that were identified by WGS/WES
+    gene/variant prioritization analysis to aid phenotype review of
+    those candidate genes.  Finally, PhenVen could be used to provide
+    detail and clarity regarding the extent of phenotype overlap
+    between the phenotype terms of a patient and one or more candidate
+    genes that have already been phenotype-prioritized by a tool like
+    Phevor or Exomiser - e.g. you know/suspect that there is good
+    phenotype overlap, but you want to review which phenotypes are
+    driving that signal.
 
     """
 )
@@ -48,9 +48,9 @@ def main():
     parser.add_argument('--genes', '-g',
                         help='A comma-separated list of target/candidate genes.')
     parser.add_argument('--gene_file', '-f',
-                        help='A file of target/candidate genes - one per row first column.')
-    parser.add_argument('--terms', '-t', dest='proband_terms_file',
-                        help='A file containing the list of HPO IDs (first column) associated with the proband.')
+                        help='A file of target genes - one per row first column.')
+    parser.add_argument('--terms', '-t', dest='patient_terms_file',
+                        help='A file containing the list of HPO IDs (first column) associated with the patient.')
     parser.add_argument('--phen2gene', '-p', dest='phen2gene_file',
                         help='The gzipped phenotype_to_genes.txt.gz file from HPO')
     parser.add_argument('--json', '-j', dest='json_file',
@@ -141,22 +141,24 @@ def main():
     sub_ids.add(root_node)
     pabG = G.subgraph(sub_ids)
 
-    # Load proband terms
-    sys.stderr.write('INFO : loading_data_file : ' + args.proband_terms_file + '\n')
-    df_prb = pd.read_table(args.proband_terms_file)
+    # Load patient terms
+    sys.stderr.write('INFO : loading_data_file : ' + args.patient_terms_file + '\n')
+    df_prb = pd.read_table(args.patient_terms_file)
+    # Make sure first column is named 'id'
+    df_prb.rename(columns={ df_prb.columns[0]: 'id' }, inplace = True)
     df_prb.drop_duplicates(subset='id', inplace=True)
     df_prb.set_index('id', inplace=True)
     prb_ids = set(df_prb.index.tolist())
     
-    # Trim proband terms to only those found in current HPO
+    # Trim patient terms to only those found in current HPO
     prb_hpo_diff = df_prb[~df_prb.index.isin(hpo_term_map.index)]
     for missing_id in prb_hpo_diff.index.tolist():
         missing_term = prb_hpo_diff.loc[missing_id]['term']
-        sys.stderr.write('INFO : dropping_invalid_proband_term : {0} {1}\n'.format(missing_id, missing_term))
+        sys.stderr.write('INFO : dropping_invalid_patient_term : {0} {1}\n'.format(missing_id, missing_term))
     df_prb = df_prb[df_prb.index.isin(hpo_term_map.index)]
         
-    # Get subgraph/leaves of proband HPO ancestors
-    sys.stderr.write('INFO : processing_proband_terms_in_graph\n')
+    # Get subgraph/leaves of patient HPO ancestors
+    sys.stderr.write('INFO : processing_patient_terms_in_graph\n')
     prb_id_ancestors = set()
     for id in tqdm(prb_ids):
         prb_id_ancestors.add(id)
@@ -227,13 +229,13 @@ def get_all_lcas(prb_id_ancestors, prb_id_leaves, gene, df_p2g, pabG, root_node,
     genG = pabG.subgraph(gene_id_ancestors)
     gen_leaves = [node for node in genG.nodes() if genG.out_degree(node)==0]
 
-    # Get subgraph of proband & gene IDs
+    # Get subgraph of patient & gene IDs
     prb_gene_ids = prb_id_ancestors.union(gene_id_ancestors)
     prb_gene_ids.add(root_node)
     pgG = pabG.subgraph(prb_gene_ids)
     pgG_ids = set(pgG.nodes())
     pgUG = nx.Graph(pgG)
-        
+
     lcas = []
     for prb_id in prb_id_leaves:
         for gene_id in gen_leaves:
