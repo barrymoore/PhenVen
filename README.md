@@ -9,14 +9,14 @@ overlap between the phenotype terms of a patient and one or more
 candidate genes e.g. you know/suspect that there is good phenotype overlap, but you
 need to review a detailed list of phenotypes are driving that signal.
 
-PhenVen can
+PhenVen can also 
 prioritize candidate genes and/or diseases based on a patient's
 phenotype in a diagnostic style analysis, similar to how you might use
-[Phenomizer](https://compbio.charite.de/phenomizer/) (phenotype first
-analysis).  PhenVen might also be run with a list of candidate genes 
-that were identified by WGS/WES gene/variant prioritization analysis 
-to add phenotype review of those candidate genes similar to how you 
-might use [Phevor](https://pubmed.ncbi.nlm.nih.gov/24702956/).
+[Phenomizer](https://compbio.charite.de/phenomizer/) in a phenotype first
+analysis.  PhenVen might also be run with a list of candidate genes 
+that were identified by WGS/WES gene/variant prioritization methods 
+to add a phenotype review component to that analysis - similar to how you 
+might use [Phevor](https://pubmed.ncbi.nlm.nih.gov/24702956/), but with ability to explore the details of the phenotype overlap.
 
 ### Synopsis
 
