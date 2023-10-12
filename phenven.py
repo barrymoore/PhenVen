@@ -14,11 +14,11 @@ description_text = (
     """
     Synopsis:
     
-    phenven.py --terms patient_phenotype.tsv         \
-               --gene_file gene_list.tsv             \
-               --phen2gene phenotype_to_genes.txt.gz \
-               --json hp.json.gz                     \
-               --jobs 4                              \
+    phenven.py --terms patient_phenotype.tsv      \
+               --gene_file gene_list.tsv          \
+               --phen2gene phenotype_to_genes.txt \
+               --json hp.json                     \
+               --jobs 16                          \
                > phenotype_overlap.tsv
     
     Description:
@@ -52,9 +52,9 @@ def main():
     parser.add_argument('--terms', '-t', dest='patient_terms_file',
                         help='A file containing the list of HPO IDs (first column) associated with the patient.')
     parser.add_argument('--phen2gene', '-p', dest='phen2gene_file',
-                        help='The gzipped phenotype_to_genes.txt.gz file from HPO')
+                        help='The phenotype_to_genes.txt file from HPO')
     parser.add_argument('--json', '-j', dest='json_file',
-                        help='A gzipped hp.json.gz file from HPO')
+                        help='An hp.json file from HPO')
     parser.add_argument('--jobs', '-n', type=int, default=1,
                         help='The number of jobs to run in parallel')
     args = parser.parse_args()

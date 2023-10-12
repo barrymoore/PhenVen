@@ -1,54 +1,54 @@
 #!vd -p
-{"col": "", "row": "", "longname": "open-file", "input": "viq_candidates.tsv", "keystrokes": "o"}
+{"col": "", "row": "", "longname": "open-file", "input": "gene_candidates.tsv", "keystrokes": "o"}
 {"col": "", "row": "", "longname": "open-file", "input": "phenotype_overlap.tsv", "keystrokes": "o"}
-{"sheet": "viq_candidates", "col": "gene", "row": "", "longname": "key-col", "input": "", "keystrokes": "!", "comment": "toggle current column as a key column"}
-{"sheet": "viq_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
+{"sheet": "gene_candidates", "col": "gene", "row": "", "longname": "key-col", "input": "", "keystrokes": "!", "comment": "toggle current column as a key column"}
+{"sheet": "gene_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
 {"sheet": "sheets", "col": "", "row": "\u30adphenotype_overlap", "longname": "open-row", "input": "", "keystrokes": "Enter", "comment": "open sheet referenced in current row"}
 {"sheet": "phenotype_overlap", "col": "gene", "row": "", "longname": "key-col", "input": "", "keystrokes": "!", "comment": "toggle current column as a key column"}
 {"sheet": "phenotype_overlap", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
 {"sheet": "sheets", "col": "", "row": "\u30adphenotype_overlap", "longname": "select-row", "input": "", "keystrokes": "s", "comment": "select current row"}
-{"sheet": "sheets", "col": "", "row": "\u30adviq_candidates", "longname": "select-row", "input": "", "keystrokes": "s", "comment": "select current row"}
+{"sheet": "sheets", "col": "", "row": "\u30adgene_candidates", "longname": "select-row", "input": "", "keystrokes": "s", "comment": "select current row"}
 {"sheet": "sheets", "col": "", "row": "", "longname": "join-selected", "input": "merge", "keystrokes": "&", "comment": "merge selected sheets with visible columns from all, keeping rows according to jointype"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "shpl", "row": "", "longname": "type-int", "input": "", "keystrokes": "#", "comment": "set type of current column to int"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic", "row": "", "longname": "addcol-expr", "input": "ic/((shpl+2)/2)", "keystrokes": "=", "comment": "create new column from Python expression, with column names as variables"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic/((shpl+2)/2)", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic/((shpl+2)/2)", "row": "", "longname": "rename-col", "input": "ic_norm", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic", "row": "", "longname": "slide-rightmost", "input": "", "keystrokes": "gShift+L", "comment": "slide current column all the way to the right of sheet"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "slide-leftmost", "input": "", "keystrokes": "gShift+H", "comment": "slide current column all the way to the left of sheet"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "slide-leftmost", "input": "", "keystrokes": "gShift+H", "comment": "slide current column all the way to the left of sheet"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "slide-left", "input": "", "keystrokes": "Shift+H", "comment": "slide current column left"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "rank", "row": "", "longname": "rename-col", "input": "viq_rank", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viq_rank", "row": "", "longname": "type-int", "input": "", "keystrokes": "#", "comment": "set type of current column to int"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "ic_norm", "row": "", "longname": "aggregate-col", "input": "sum", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "shpl", "row": "", "longname": "aggregate-col", "input": "mean", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viq_rank", "row": "", "longname": "aggregate-col", "input": "mode", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "viqscr", "row": "", "longname": "aggregate-col", "input": "mode", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "prb_term", "row": "", "longname": "aggregate-col", "input": "distinct", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "gene_term", "row": "", "longname": "aggregate-col", "input": "distinct", "keystrokes": "+", "comment": "Add aggregator to current column"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
-{"sheet": "phenotype_overlap+viq_candidates", "col": "gene", "row": "", "longname": "freq-col", "input": "", "keystrokes": "Shift+F", "comment": "open Frequency Table grouped on current column, with aggregations of other columns"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "ic_norm_sum", "row": "", "longname": "sort-desc", "input": "", "keystrokes": "]", "comment": "sort descending by current column; replace any existing sort criteria "}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "gene", "row": "", "longname": "addcol-incr", "input": "", "keystrokes": "i", "comment": "add column with incremental values"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "A", "row": "", "longname": "rename-col", "input": "rank", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "rank", "row": "", "longname": "addcol-expr", "input": "100*(1-(rank/4500))", "keystrokes": "=", "comment": "create new column from Python expression, with column names as variables"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "100*(1-(rank/4500))", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "100*(1-(rank/4500))", "row": "", "longname": "rename-col", "input": "pcnt_rank", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "viq_rank_mode", "row": "", "longname": "rename-col", "input": "viq_rank", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "viqscr_mode", "row": "", "longname": "rename-col", "input": "viqscr", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "prb_term_distinct", "row": "", "longname": "rename-col", "input": "prb_terms", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "gene_term_distinct", "row": "", "longname": "rename-col", "input": "gene_terms", "keystrokes": "^", "comment": "rename current column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "", "row": "", "longname": "select-expr", "input": "rank<=5 or (0 < viq_rank <= 10) or (pcnt_rank >= 95 and viqscr > 0)", "keystrokes": "z|", "comment": "select rows matching Python expression in any visible column"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq", "col": "", "row": "", "longname": "dup-selected", "input": "", "keystrokes": "\"", "comment": "open duplicate sheet with only selected rows"}
-{"sheet": "phenotype_overlap+viq_candidates_gene_freq_selectedref", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
-{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+viq_candidates", "longname": "edit-cell", "input": "phenotype_overlap_merge", "keystrokes": "e", "comment": "edit contents of current cell"}
-{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+viq_candidates_gene_freq", "longname": "edit-cell", "input": "phenotype_overlap_merge_freq", "keystrokes": "e", "comment": "edit contents of current cell"}
-{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+viq_candidates_gene_freq_selectedref", "longname": "edit-cell", "input": "phenotype_overlap_merge_freq_cnd", "keystrokes": "e", "comment": "edit contents of current cell"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "shpl", "row": "", "longname": "type-int", "input": "", "keystrokes": "#", "comment": "set type of current column to int"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic", "row": "", "longname": "addcol-expr", "input": "ic/((shpl+2)/2)", "keystrokes": "=", "comment": "create new column from Python expression, with column names as variables"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic/((shpl+2)/2)", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic/((shpl+2)/2)", "row": "", "longname": "rename-col", "input": "ic_norm", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic", "row": "", "longname": "slide-rightmost", "input": "", "keystrokes": "gShift+L", "comment": "slide current column all the way to the right of sheet"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "slide-leftmost", "input": "", "keystrokes": "gShift+H", "comment": "slide current column all the way to the left of sheet"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "slide-leftmost", "input": "", "keystrokes": "gShift+H", "comment": "slide current column all the way to the left of sheet"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "slide-right", "input": "", "keystrokes": "Shift+L", "comment": "slide current column right"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "slide-left", "input": "", "keystrokes": "Shift+H", "comment": "slide current column left"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "rank", "row": "", "longname": "rename-col", "input": "gene_rank", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_rank", "row": "", "longname": "type-int", "input": "", "keystrokes": "#", "comment": "set type of current column to int"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "ic_norm", "row": "", "longname": "aggregate-col", "input": "sum", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "shpl", "row": "", "longname": "aggregate-col", "input": "mean", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_rank", "row": "", "longname": "aggregate-col", "input": "mode", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_score", "row": "", "longname": "aggregate-col", "input": "mode", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "prb_term", "row": "", "longname": "aggregate-col", "input": "distinct", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene_term", "row": "", "longname": "aggregate-col", "input": "distinct", "keystrokes": "+", "comment": "Add aggregator to current column"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
+{"sheet": "phenotype_overlap+gene_candidates", "col": "gene", "row": "", "longname": "freq-col", "input": "", "keystrokes": "Shift+F", "comment": "open Frequency Table grouped on current column, with aggregations of other columns"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "ic_norm_sum", "row": "", "longname": "sort-desc", "input": "", "keystrokes": "]", "comment": "sort descending by current column; replace any existing sort criteria "}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "gene", "row": "", "longname": "addcol-incr", "input": "", "keystrokes": "i", "comment": "add column with incremental values"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "A", "row": "", "longname": "rename-col", "input": "rank", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "rank", "row": "", "longname": "addcol-expr", "input": "100*(1-(rank/4500))", "keystrokes": "=", "comment": "create new column from Python expression, with column names as variables"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "100*(1-(rank/4500))", "row": "", "longname": "type-float", "input": "", "keystrokes": "%", "comment": "set type of current column to float"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "100*(1-(rank/4500))", "row": "", "longname": "rename-col", "input": "pcnt_rank", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "gene_rank_mode", "row": "", "longname": "rename-col", "input": "gene_rank", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "gene_score_mode", "row": "", "longname": "rename-col", "input": "gene_score", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "prb_term_distinct", "row": "", "longname": "rename-col", "input": "prb_terms", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "gene_term_distinct", "row": "", "longname": "rename-col", "input": "gene_terms", "keystrokes": "^", "comment": "rename current column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "", "row": "", "longname": "select-expr", "input": "rank<=5 or (0 < gene_rank <= 10) or (pcnt_rank >= 95 and gene_score > 0)", "keystrokes": "z|", "comment": "select rows matching Python expression in any visible column"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq", "col": "", "row": "", "longname": "dup-selected", "input": "", "keystrokes": "\"", "comment": "open duplicate sheet with only selected rows"}
+{"sheet": "phenotype_overlap+gene_candidates_gene_freq_selectedref", "col": "", "row": "", "longname": "sheets-stack", "input": "", "keystrokes": "Shift+S", "comment": "open Sheets Stack: join or jump between the active sheets on the current stack"}
+{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+gene_candidates", "longname": "edit-cell", "input": "phenotype_overlap_merge", "keystrokes": "e", "comment": "edit contents of current cell"}
+{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+gene_candidates_gene_freq", "longname": "edit-cell", "input": "phenotype_overlap_merge_freq", "keystrokes": "e", "comment": "edit contents of current cell"}
+{"sheet": "sheets", "col": "name", "row": "\u30adphenotype_overlap+gene_candidates_gene_freq_selectedref", "longname": "edit-cell", "input": "phenotype_overlap_merge_freq_cnd", "keystrokes": "e", "comment": "edit contents of current cell"}
